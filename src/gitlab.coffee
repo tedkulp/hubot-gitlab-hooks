@@ -100,8 +100,8 @@ module.exports = (robot) ->
               message = "#{bold(hook.user_name)} pushed #{bold(hook.total_commits_count)} commits to #{bold(branch)} in #{bold(hook.repository.name)} #{underline(hook.repository.homepage + '/compare/' + hook.before.substr(0,9) + '...' + hook.after.substr(0,9))}"
               merger = []
               for i in [0...hook.commits.length]
-                merger[i] = "Commit " + (i+1) + ": " + hook.commits[i].message
-              message += "\r\n```\r\n" + merger.join "\r\n```\r\n"
+                merger[i] = "```\r\nCommit " + (i+1) + ": " + hook.commits[i].message + "\r\n```"
+              message += "\r\n" + merger.join "\r\n"
           robot.send user, message
         # not code? must be a something good!
         else
